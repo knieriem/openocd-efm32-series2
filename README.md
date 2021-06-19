@@ -3,10 +3,16 @@ support for Silicon Laboratories EFM32 **series 2** MCUs appears not to be prese
 Series 0 and 1 MCUs are supported by the _efm32_ driver, though.
 
 To be able to flash and debug MCUs like [EFM32PG22],
-this repository contains a copy of OpenOCD's driver flash/nor/efm32.c,
+this repository [contains a copy][efm32s2] of [OpenOCD's driver flash/nor/efm32.c][efm32c] for series 0 and 1,
 adapted to series 2, as far as necessary for basic functionality.  
-Page locking may not work yet, this hasn't been tested.
+There may be bugs,
+since parts intended to be used with series 0 and 1 MCUs
+might not apply to series 2.
+Page locking may not work, this hasn't been tested yet.
 Also, it is not possible yet to erase or write to the _userdata_ page.
+
+[efm32s2]: ./efm32s2/efm32s2.c
+[efm32c]: https://github.com/ntfreak/openocd/blob/42a0bf3c360c1eae418223f0ab535b4d7accae83/src/flash/nor/efm32.c
 
 A number of details are different in series 2, as compared to series 0 and 1:
 
@@ -34,6 +40,11 @@ Checkout a revision compatible to this EFM32 series 2 extension:
 	git checkout 42a0bf3
 
 ... which sets the OpenOCD source directory to a few commits after v0.11.0.
+
+Initialize submodules:
+
+	git submodule init
+	git submodule update
 
 Copy files and apply the apply the patch from the _efm32s2_ subdirectory to their positions in the openocd directory just created:
 
