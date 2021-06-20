@@ -1,3 +1,16 @@
+diff --git a/configure.ac b/configure.ac
+index bd2e5c4f9..3034c10b3 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -600,6 +600,8 @@ AS_IF([test "x$enable_capstone" != xno], [
+ 		fi
+ 		enable_capstone=no
+ 	])
++], [
++	AC_DEFINE([HAVE_CAPSTONE], [0], [0 if you don't have Capstone disassembly framework.])
+ ])
+ 
+ for hidapi_lib in hidapi hidapi-hidraw hidapi-libusb; do
 diff --git a/src/flash/nor/Makefile.am b/src/flash/nor/Makefile.am
 index 532670436..a0b4a8390 100644
 --- a/src/flash/nor/Makefile.am

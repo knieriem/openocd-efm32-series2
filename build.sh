@@ -3,6 +3,7 @@ cd openocd
 ./bootstrap
 ./configure \
 	--prefix=/opt/openocd-emf32s2-cmsis-dap\
+	--without-capstone\
 	--disable-presto\
 	--disable-ftdi\
 	--disable-stlink\

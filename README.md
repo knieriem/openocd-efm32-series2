@@ -48,7 +48,7 @@ and apply the patch:
 
 	cp ../efm32s2/efm32s2.c src/flash/nor/
 	cp ../efm32s2/efm32s2.cfg tcl/target/
-	patch -p1 < ../efm32s2/register_driver.patch 
+	patch -p1 < ../efm32s2/adjust_openocd.patch
 
 The OpenOCD tree is now ready to be built.
 
