@@ -6,8 +6,8 @@ cp -a $src/LICENSES .
 cp $src/COPYING .
 
 mkdir -p bin
-cp $src/src/openocd bin
-strip -s bin/openocd
+cp $src/src/openocd bin/openocd-efm32s2
+strip -s bin/openocd-efm32s2
 
 mkdir -p scripts/interface
 cp $src/tcl/interface/cmsis-dap.cfg scripts/interface
