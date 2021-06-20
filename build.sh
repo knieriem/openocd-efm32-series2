@@ -35,5 +35,6 @@ cd openocd
 	--disable-imx_gpio\
 	--disable-bcm2835gpio\
 
+make clean
 make
 cd ..
