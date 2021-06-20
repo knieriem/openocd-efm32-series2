@@ -23,11 +23,13 @@ instead of keeping it separate.
 
 [EFM32PG22]: https://www.silabs.com/mcu/32-bit/efm32pg22-series-2
 
+
 ## Setup OpenOCD sources
 
 In this project's working directory, clone OpenOCD's official Github mirror repository:
 
 	git clone https://github.com/ntfreak/openocd
+	cd openocd
 
 Checkout a revision compatible to this EFM32 series 2 extension:
 
@@ -40,14 +42,16 @@ Initialize submodules:
 	git submodule init
 	git submodule update
 
-Copy files and apply the apply the patch from the _efm32s2_ subdirectory to their positions in the openocd directory just created:
+Still inside the ./openocd subdirectory,
+copy files from the _efm32s2_ subdirectory to their positions in the openocd source tree,
+and apply the patch:
 
-	cd openocd
 	cp ../efm32s2/efm32s2.c src/flash/nor/
 	cp ../efm32s2/efm32s2.cfg tcl/target/
 	patch -p1 < ../efm32s2/register_driver.patch 
 
 The OpenOCD tree is now ready to be built.
+
 
 ## Build on Linux
 
