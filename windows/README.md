@@ -3,7 +3,7 @@
 If building the openocd Linux executable succeeds,
 i.e. all prerequisites are available,
 building a Windows executable should be easy,
-prodided the x86_64-w64-mingw32 compiler toolchain
+provided the x86_64-w64-mingw32 compiler toolchain
 is installed.
 
 ### Prerequisites
