@@ -1,17 +1,10 @@
-As of June 2021,
-support for Silicon Laboratories EFM32 **series 2** MCUs appears not to be present in OpenOCD.
-Series 0 and 1 MCUs are supported by the _efm32_ driver, though.
+Subdirectory _[efm32s2]_ contains a preliminary OpenOCD flash driver for Silicon Laboratories EFM32 series 2 MCUs, like EFM32PG22,
+based on OpenOCD's driver for series 0 and 1 MCUs, [efm32][efm32c],
+which has been adapted as far as necessary for basic functionality.
+Features other than flashing or debugging, like page locking,
+may still not work correctly, this hasn't been tested yet.
 
-To be able to flash and debug MCUs like [EFM32PG22],
-this repository [contains a copy][efm32s2] of [OpenOCD's driver flash/nor/efm32.c][efm32c] for series 0 and 1,
-adapted to series 2, as far as necessary for basic functionality.  
-There may be bugs,
-since parts intended to be used with series 0 and 1 MCUs
-might not apply to series 2.
-Page locking may not work, this hasn't been tested yet.
-Also, it is not possible yet to erase or write to the _userdata_ page.
-
-[efm32s2]: ./efm32s2/efm32s2.c
+[efm32s2]: ./efm32s2
 [efm32c]: https://github.com/ntfreak/openocd/blob/42a0bf3c360c1eae418223f0ab535b4d7accae83/src/flash/nor/efm32.c
 
 A number of details are different in series 2, as compared to series 0 and 1:
@@ -23,9 +16,10 @@ A number of details are different in series 2, as compared to series 0 and 1:
 -	The RAM starts at a different address, 0x2... instead of 0x1....
 
 Since the work area address (i.e. the start of ram) gets configured in tcl/target/efm32.cfg,
-it was decided to create a new `efm32s2` target in tcl/target/efm32s2.cfg,
-and to derive a flash driver `efm32s2.c` from `efm32.c`.
-It is not clear yet, if it would make sense to integrate series 2 support into the original efm32 driver, instead of keeping it separate.
+it has been decided to create a new `efm32s2` target in tcl/target/efm32s2.cfg,
+and to derive a separate flash driver `efm32s2.c` from `efm32.c`.
+It is not clear yet, if it would make sense to integrate series 2 support into the original efm32 driver,
+instead of keeping it separate.
 
 [EFM32PG22]: https://www.silabs.com/mcu/32-bit/efm32pg22-series-2
 
