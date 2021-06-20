@@ -88,3 +88,8 @@ The output should contain lines like:
 	Info : flash page size = 8192bytes
 
 [Particle Debugger]: https://docs.particle.io/datasheets/accessories/debugger/
+
+
+## Build a Windows binary on Linux
+
+See the [./windows](./windows) subdirectory for details.

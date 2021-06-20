@@ -3,3 +3,9 @@
 /dist/LICENSES/
 /dist/COPYING
 /openocd/
+/windows/hidapi/
+/windows/libusb/
+/windows/dist/bin
+/windows/dist/scripts
+/windows/dist/LICENSES/
+/windows/dist/COPYING
