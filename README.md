@@ -1,5 +1,5 @@
 Subdirectory _[efm32s2]_ contains a preliminary OpenOCD flash driver for Silicon Laboratories EFM32 series 2 MCUs, like EFM32PG22,
-based on OpenOCD's driver for series 0 and 1 MCUs, [efm32][efm32c],
+or EFR32FG23, based on OpenOCD's driver for series 0 and 1 MCUs, [efm32][efm32c],
 which has been adapted as far as necessary for basic functionality.
 Features other than flashing or debugging, like page locking,
 may still not work correctly, this hasn't been tested yet.
@@ -14,6 +14,7 @@ A number of details are different in series 2, as compared to series 0 and 1:
 	which made an adjustment of the flash write assembly code neccessary.
 -	To be able to use the MSC peripheral, its clock must be enabled in the CMU.
 -	The RAM starts at a different address, 0x2... instead of 0x1....
+-	Flash base address is not 0x0 but 0x08000000 for EFR32xG23 (but still 0x0 for xG22).
 
 Since the work area address (i.e. the start of ram) gets configured in tcl/target/efm32.cfg,
 it has been decided to create a new `efm32s2` target in tcl/target/efm32s2.cfg,
@@ -33,9 +34,9 @@ In this project's working directory, clone OpenOCD's official Github mirror repo
 
 Checkout a revision compatible to this EFM32 series 2 extension:
 
-	git checkout 42a0bf3
+	git checkout 94e7535
 
-... which sets the OpenOCD source directory to a few commits after v0.11.0.
+... which sets the OpenOCD source directory to where this author last tested building. Bumping further might work, but YMMV.
 
 Initialize submodules:
 
