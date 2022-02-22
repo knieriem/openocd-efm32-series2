@@ -17,6 +17,9 @@
  *   Copyright (C) 2021 Michael Teichgräber                                *
  *   mteichgraeber@gmx.de                                                  *
  *                                                                         *
+ *   Copyright (C) 2022 Mikrodust AB                                       *
+ *   henrik.persson@mikrodust.com                                          *
+ *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
@@ -85,6 +88,9 @@
 
 #define EFM32_CMU_REGBASE               0x40008000
 #define EFM32_CMU_REG_CLKEN1_SET        0x1068
+
+#define EFM32_CMU_REG_CLKEN1_MSC_MSK_G22 (1 << 17)
+#define EFM32_CMU_REG_CLKEN1_MSC_MSK_G23 (1 << 16)
 
 struct efm32_family_data {
 	int family_id;
@@ -980,6 +986,10 @@ static int efm32x_probe(struct flash_bank *bank)
 	if (ERROR_OK != ret)
 		return ret;
 
+	if (efm32_mcu_info.part_family_num == 23) {
+		base_address = 0x08000000;
+	}
+
 	LOG_INFO("detected part: %cG%d%c%03d, rev %d",
 			efm32_mcu_info.part_family,
 			efm32_mcu_info.part_family_num,
@@ -1004,7 +1014,16 @@ static int efm32x_probe(struct flash_bank *bank)
 	bank->num_sectors = num_pages;
 
 	/* enable MSC clock */
-	ret = target_write_u32(bank->target, EFM32_CMU_REGBASE + EFM32_CMU_REG_CLKEN1_SET, 1UL<<17);
+	uint32_t msc_clken = EFM32_CMU_REG_CLKEN1_MSC_MSK_G22;
+	if (efm32_mcu_info.part_family_num == 22) {
+		msc_clken = EFM32_CMU_REG_CLKEN1_MSC_MSK_G22;
+	} else if (efm32_mcu_info.part_family_num == 23) {
+		msc_clken = EFM32_CMU_REG_CLKEN1_MSC_MSK_G23;
+	} else {
+		LOG_WARNING("Don't know EFR/EFM Gx family number, can't set MSC register. Defaulting to EF{M,R}xG22 values..");
+	}
+
+	ret = target_write_u32(bank->target, EFM32_CMU_REGBASE + EFM32_CMU_REG_CLKEN1_SET, msc_clken);
 	if (ERROR_OK != ret) {
 		LOG_ERROR("Failed to enable MSC clock");
 		return ret;
