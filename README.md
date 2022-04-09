@@ -10,7 +10,7 @@ Also this implementation can serve as a good reference for implementing the mech
 appnotes [AN1303] and [AN1190].
 
 [efm32s2]: ./efm32s2
-[efm32c]: https://github.com/openocd-org/openocd/blob/c0c7d6fe8b04f521a7262303083ef5eb6ebaf4e5/src/flash/nor/efm32.c
+[efm32c]: https://github.com/openocd-org/openocd/blob/1ad6ed38b6da09b1d5d9e56d1344fced2dce12bc/src/flash/nor/efm32.c
 [AN1190]: https://www.silabs.com/documents/public/application-notes/an1190-efr32-secure-debug.pdf
 [AN1303]: https://www.silabs.com/documents/public/application-notes/an1303-efr32-dci-swd-programming.pdf
 
