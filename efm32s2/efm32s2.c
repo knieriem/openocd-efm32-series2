@@ -315,7 +315,7 @@ static int efm32x_read_info(struct flash_bank *bank,
 			efm32_info->family_data = &efm32_families[i];
 	}
 
-	if (efm32_info->family_data) {
+	if (!efm32_info->family_data) {
 		LOG_ERROR("Unknown MCU family %d", efm32_info->legacy_family);
 		return ERROR_FAIL;
 	}
