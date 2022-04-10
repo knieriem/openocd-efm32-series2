@@ -6,7 +6,7 @@ may still not work correctly, this hasn't been tested yet.
 
 Some functionality for enabling debug lock and issuing a device reset via DCI to lock/unlock a device
 has been implemented in efm32s2.cfg, and the tcl will attempt to notify the user if the device is locked.
-Also this implementation can serve as a good reference for implementing the mechanisms describeed in SiLabs
+Also this implementation can serve as a good reference for implementing the mechanisms described in SiLabs
 appnotes [AN1303] and [AN1190].
 
 [efm32s2]: ./efm32s2
@@ -22,7 +22,7 @@ A number of details are different in series 2, as compared to series 0 and 1:
 -	To be able to use the MSC peripheral, its clock must be enabled in the CMU.
 -	The RAM starts at a different address, 0x2... instead of 0x1....
 -	Flash base address is not 0x0 but 0x08000000 for EFR32xG23 (but still 0x0 for xG22).
--	Debug/device lock/erase has now moved to it's own SWD AP called DCI.
+-	Debug/device lock/erase has now moved to its own SWD AP called DCI.
 
 Since the work area address (i.e. the start of ram) gets configured in tcl/target/efm32.cfg,
 it has been decided to create a new `efm32s2` target in tcl/target/efm32s2.cfg,
