@@ -35,7 +35,10 @@ instead of keeping it separate.
 
 ## Setup OpenOCD sources
 
-In this project's working directory, clone OpenOCD's official Github mirror repository:
+In this project's working directory, run `sh setup-openocd-src.sh`,
+or alternatively, follow these steps:
+
+Clone OpenOCD's official Github mirror repository:
 
 	git clone https://github.com/openocd-org/openocd
 	cd openocd
