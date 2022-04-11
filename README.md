@@ -10,7 +10,7 @@ Also this implementation can serve as a good reference for implementing the mech
 appnotes [AN1303] and [AN1190].
 
 [efm32s2]: ./efm32s2
-[efm32c]: https://github.com/openocd-org/openocd/blob/aad87180586a43500f8af1cf79255c7293bb258b/src/flash/nor/efm32.c
+[efm32c]: https://github.com/openocd-org/openocd/blob/1c22c5a82b248b7209fdc904e733b9fa29307c48/src/flash/nor/efm32.c
 [AN1190]: https://www.silabs.com/documents/public/application-notes/an1190-efr32-secure-debug.pdf
 [AN1303]: https://www.silabs.com/documents/public/application-notes/an1303-efr32-dci-swd-programming.pdf
 
@@ -42,7 +42,7 @@ In this project's working directory, clone OpenOCD's official Github mirror repo
 
 Checkout a revision compatible to this EFM32 series 2 extension:
 
-	git checkout 94e7535
+	git checkout 1c22c5a
 
 ... which sets the OpenOCD source directory to where this author last tested building. Bumping further might work, but YMMV.
 
