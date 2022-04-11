@@ -1,8 +1,8 @@
 diff --git a/configure.ac b/configure.ac
-index bd2e5c4f9..3034c10b3 100644
+index 15d7229a4..8b0a87497 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -600,6 +600,8 @@ AS_IF([test "x$enable_capstone" != xno], [
+@@ -616,6 +616,8 @@ AS_IF([test "x$enable_capstone" != xno], [
  		fi
  		enable_capstone=no
  	])
@@ -12,7 +12,7 @@ index bd2e5c4f9..3034c10b3 100644
  
  for hidapi_lib in hidapi hidapi-hidraw hidapi-libusb; do
 diff --git a/src/flash/nor/Makefile.am b/src/flash/nor/Makefile.am
-index 532670436..a0b4a8390 100644
+index a5ef42210..963edbdcf 100644
 --- a/src/flash/nor/Makefile.am
 +++ b/src/flash/nor/Makefile.am
 @@ -25,6 +25,7 @@ NOR_DRIVERS = \
@@ -24,7 +24,7 @@ index 532670436..a0b4a8390 100644
  	%D%/esirisc_flash.c \
  	%D%/faux.c \
 diff --git a/src/flash/nor/drivers.c b/src/flash/nor/drivers.c
-index 6eadc756b..d0bc60573 100644
+index 3e35c0954..df46e9bb9 100644
 --- a/src/flash/nor/drivers.c
 +++ b/src/flash/nor/drivers.c
 @@ -38,6 +38,7 @@ extern const struct flash_driver cc26xx_flash;
@@ -35,7 +35,7 @@ index 6eadc756b..d0bc60573 100644
  extern const struct flash_driver em357_flash;
  extern const struct flash_driver esirisc_flash;
  extern const struct flash_driver faux_flash;
-@@ -112,6 +113,7 @@ static const struct flash_driver * const flash_drivers[] = {
+@@ -113,6 +114,7 @@ static const struct flash_driver * const flash_drivers[] = {
  	&cfi_flash,
  	&dsp5680xx_flash,
  	&efm32_flash,

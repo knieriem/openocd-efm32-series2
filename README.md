@@ -42,7 +42,7 @@ In this project's working directory, clone OpenOCD's official Github mirror repo
 
 Checkout a revision compatible to this EFM32 series 2 extension:
 
-	git checkout 1c22c5a
+	git checkout 7c6d379
 
 ... which sets the OpenOCD source directory to where this author last tested building. Bumping further might work, but YMMV.
 
