@@ -54,6 +54,7 @@
 #define EFM32_FLASH_WRITE_TMO           100
 
 #define EFM32_FLASH_BASE                0
+#define EFM32_FLASH_BASE_G23            0x08000000
 
 /* size in bytes, not words; must fit all Gecko devices */
 #define LOCKWORDS_SZ                512
@@ -1105,7 +1106,7 @@ static int efm32x_probe(struct flash_bank *bank)
 	struct efm32x_flash_chip *efm32x_info = bank->driver_priv;
 	struct efm32_info *efm32_mcu_info = &(efm32x_info->info);
 	int ret;
-	uint32_t base_address = 0x00000000;
+	uint32_t base_address = EFM32_FLASH_BASE;
 
 	int bank_index = efm32x_get_bank_index(bank->base);
 	assert(bank_index >= 0);
@@ -1118,7 +1119,7 @@ static int efm32x_probe(struct flash_bank *bank)
 		return ret;
 
 	if (efm32_mcu_info->part_family_num == 23) {
-		base_address = 0x08000000;
+		base_address = EFM32_FLASH_BASE_G23;
 	}
 
 	LOG_INFO("detected part: %cG%d%c%03d, rev %d",
