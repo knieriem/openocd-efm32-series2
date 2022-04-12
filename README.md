@@ -67,7 +67,7 @@ The OpenOCD tree is now ready to be built.
 
 ## Build on Linux
 
-For a minimal setup, with most drivers disabled except CMSIS-DAP,
+For a minimal setup, with most drivers disabled except CMSIS-DAP and FTDI/MPSSE,
 run
 
 	sh build.sh
@@ -75,6 +75,9 @@ run
 If _configure_ complains about missing dependencies,
 or CMSIS-DAP is not marked _yes_ in the _configuration summary_,
 install the missing pieces, and run build.sh again.
+
+
+## Run a test using CMSIS-DAP
 
 If the build succeeded,
 a minimal installation may be created in the _dist_ subdirectory
@@ -101,6 +104,31 @@ The output should contain lines like:
 
 [Particle Debugger]: https://docs.particle.io/datasheets/accessories/debugger/
 
+
+### Using an FTDI device instead
+
+Alternatively, instead of CMSIS-DAP the `ftdi` driver may be used with an FTDI device with MPSSE mode.
+Support has been added for FT232H,
+which is part of e.g. [UM232H].
+To use the ftdi interface in [dist/_iface.sh],
+comment out the line `iface=ftdi_ft232h`.
+
+The following wiring has been used successfully with an EFM32PG22 and UM232H:
+
+![](um232h.svg)
+
+Note: While the other Pins are connected directly,
+between TDI and SWDIO a resistor must be placed,
+as stated in [swd-resistor-hack.cfg].
+For the above setup, 470 Ω has been found to work (while 1 kΩ didn't).
+
+To get the FTDI approach to run on Windows,
+the default FTDI driver has to be replaced with WinUSB by a tool like [zadig].
+
+[UM232H]: https://ftdichip.com/wp-content/uploads/2020/07/DS_UM232H.pdf#page=10
+[dist/_iface.sh]: dist/_iface.sh
+[swd-resistor-hack.cfg]: https://github.com/openocd-org/openocd/tree/master/tcl/interface/ftdi/swd-resistor-hack.cfg 
+[zadig]: https://github.com/pbatard/libwdi/releases
 
 ## Build a Windows binary on Linux
 

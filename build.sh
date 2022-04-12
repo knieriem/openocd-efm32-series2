@@ -5,7 +5,6 @@ cd openocd
 	--prefix=/opt/openocd-emf32s2-cmsis-dap\
 	--without-capstone\
 	--disable-presto\
-	--disable-ftdi\
 	--disable-stlink\
 	--disable-rshim\
 	--disable-usb-blaster-2\

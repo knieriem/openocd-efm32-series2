@@ -5,7 +5,6 @@ toolchain=x86_64-w64-mingw32
 ./configure --host=$toolchain \
 	--without-capstone\
 	--disable-presto\
-	--disable-ftdi\
 	--disable-stlink\
 	--disable-rshim\
 	--disable-usb-blaster-2\
