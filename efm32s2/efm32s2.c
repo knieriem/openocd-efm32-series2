@@ -218,7 +218,7 @@ static const struct efm32_family_data efm32_families[] = {
 		{ 128, "SERIES2V0", .series = 2 },
 };
 
-const struct flash_driver efm32_flash;
+const struct flash_driver efm32s2_flash;
 
 static int efm32x_priv_write(struct flash_bank *bank, const uint8_t *buffer,
 	uint32_t addr, uint32_t count);
@@ -406,7 +406,7 @@ FLASH_BANK_COMMAND_HANDLER(efm32x_flash_bank_command)
 
 	/* look for an existing flash structure matching target */
 	for (struct flash_bank *bank_iter = flash_bank_list(); bank_iter; bank_iter = bank_iter->next) {
-		if (bank_iter->driver == &efm32_flash
+		if (bank_iter->driver == &efm32s2_flash
 			&& bank_iter->target == bank->target
 			&& bank->driver_priv) {
 			efm32x_info = bank->driver_priv;
