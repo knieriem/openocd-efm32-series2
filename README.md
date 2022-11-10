@@ -67,6 +67,12 @@ The OpenOCD tree is now ready to be built.
 
 ## Build on Linux
 
+Prerequisites:
+
+	make autoconf libtool
+	gcc git
+	libusb-dev libftdi-dev
+
 For a minimal setup, with most drivers disabled except CMSIS-DAP and FTDI/MPSSE,
 run
 
