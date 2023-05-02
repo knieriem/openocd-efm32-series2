@@ -10,7 +10,6 @@ cd openocd
 	--disable-usb-blaster-2\
 	--disable-ti-icdi\
 	--disable-vsllink\
-	--disable-ft232r\
 	--disable-xds110\
 	--disable-osbdm\
 	--disable-opendous\
@@ -32,7 +31,8 @@ cd openocd
 	--disable-at91rm9200\
 	--disable-ep93xx\
 	--disable-imx_gpio\
-	--disable-bcm2835gpio\
+	--enable-ft232r\
+	--enable-bcm2835gpio\
 
 make clean
 make
