@@ -110,6 +110,7 @@ static int efm32x_get_bank_index(target_addr_t base)
 {
 	switch (base) {
 		case EFM32_FLASH_BASE:
+		case EFM32_FLASH_BASE_G23:
 			return EFM32_BANK_INDEX_MAIN;
 		case EFM32_MSC_USER_DATA:
 			return EFM32_BANK_INDEX_USER_DATA;
@@ -723,6 +724,7 @@ static int efm32x_get_page_lock(struct flash_bank *bank, size_t page)
 
 	switch (bank->base) {
 		case EFM32_FLASH_BASE:
+		case EFM32_FLASH_BASE_G23:
 			dw = efm32x_info->lb_page[page >> 5];
 			mask = 1 << (page & 0x1f);
 			break;
@@ -743,7 +745,7 @@ static int efm32x_set_page_lock(struct flash_bank *bank, size_t page, int set)
 {
 	struct efm32x_flash_chip *efm32x_info = bank->driver_priv;
 
-	if (bank->base != EFM32_FLASH_BASE) {
+	if (bank->base != EFM32_FLASH_BASE || bank->base != EFM32_FLASH_BASE_G23) {
 		LOG_ERROR("Locking user and lockbits pages is not supported yet");
 		return ERROR_FAIL;
 	}
@@ -1121,6 +1123,8 @@ static int efm32x_probe(struct flash_bank *bank)
 	if (efm32_mcu_info->part_family_num == 23) {
 		base_address = EFM32_FLASH_BASE_G23;
 	}
+
+	if (bank->base == 0) bank->base = base_address;
 
 	LOG_INFO("detected part: %cG%d%c%03d, rev %d",
 			efm32_mcu_info->part_family,
