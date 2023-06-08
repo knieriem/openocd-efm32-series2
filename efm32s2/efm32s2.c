@@ -75,6 +75,8 @@
 #define EFM32_MSC_DI_PROD_REV           (EFM32_MSC_DEV_INFO+0x002)
 
 #define EFM32_MSC_REGBASE               0x40030000
+#define EFM32_MSC_REGBASE_NS            0x50030000
+
 #define EFM32_MSC_REG_WRITECTRL         0x00c
 #define EFM32_MSC_WRITECTRL_WREN_MASK   0x1
 #define EFM32_MSC_REG_WRITECMD          0x010
@@ -88,12 +90,17 @@
 #define EFM32_MSC_STATUS_LOCKED_MASK    0x2
 #define EFM32_MSC_STATUS_INVADDR_MASK   0x4
 #define EFM32_MSC_STATUS_WDATAREADY_MASK 0x8
-#define EFM32_MSC_STATUS_WORDTIMEOUT_MASK 0x10
-#define EFM32_MSC_STATUS_ERASEABORTED_MASK 0x20
+#define EFM32_MSC_STATUS_ERASEABORTED_MASK 0x10
+#define EFM32_MSC_STATUS_PENDING_MASK      0x20
+#define EFM32_MSC_STATUS_WORDTIMEOUT_MASK  0x40
+#define EFM32_MSC_STATUS_RANGEPARTIAL_MASK 0x80
+
 #define EFM32_MSC_REG_LOCK              0x03c
 #define EFM32_MSC_LOCK_LOCKKEY          0x1b71
 
 #define EFM32_CMU_REGBASE               0x40008000
+#define EFM32_CMU_REGBASE_NS            0x50008000
+
 #define EFM32_CMU_REG_CLKEN1_SET        0x1068
 
 #define EFM32_CMU_REG_CLKEN1_MSC_MSK_G22 (1 << 17)
@@ -110,6 +117,7 @@ static int efm32x_get_bank_index(target_addr_t base)
 {
 	switch (base) {
 		case EFM32_FLASH_BASE:
+		case EFM32_FLASH_BASE_G23:
 			return EFM32_BANK_INDEX_MAIN;
 		case EFM32_MSC_USER_DATA:
 			return EFM32_BANK_INDEX_USER_DATA;
@@ -261,6 +269,9 @@ static int efm32x_get_part_info(struct flash_bank *bank, struct efm32_info *pinf
 	case 2:
 		pinfo->part_family = 'B';
 		break;
+	case 3:
+		pinfo->part_family = 'Z';
+		break;
 	case 5:
 		pinfo->part_family = 'P';
 		break;
@@ -356,7 +367,7 @@ static int efm32x_read_info(struct flash_bank *bank)
 			LOG_ERROR("Series 1 MCU detected; use efm32 driver, not efm32s2");
 			break;
 		case 2:
-			efm32x_info->reg_base = EFM32_MSC_REGBASE;
+			efm32x_info->reg_base = EFM32_MSC_REGBASE_NS;
 			efm32x_info->reg_lock = EFM32_MSC_REG_LOCK;
 			ret = efm32x_get_part_info(bank, efm32_info);
 			if (ret != ERROR_OK)
@@ -723,6 +734,7 @@ static int efm32x_get_page_lock(struct flash_bank *bank, size_t page)
 
 	switch (bank->base) {
 		case EFM32_FLASH_BASE:
+		case EFM32_FLASH_BASE_G23:
 			dw = efm32x_info->lb_page[page >> 5];
 			mask = 1 << (page & 0x1f);
 			break;
@@ -743,7 +755,7 @@ static int efm32x_set_page_lock(struct flash_bank *bank, size_t page, int set)
 {
 	struct efm32x_flash_chip *efm32x_info = bank->driver_priv;
 
-	if (bank->base != EFM32_FLASH_BASE) {
+	if ((bank->base != EFM32_FLASH_BASE) && (bank->base != EFM32_FLASH_BASE_G23)) {
 		LOG_ERROR("Locking user and lockbits pages is not supported yet");
 		return ERROR_FAIL;
 	}
@@ -1146,7 +1158,7 @@ static int efm32x_probe(struct flash_bank *bank)
 		LOG_WARNING("Don't know EFR/EFM Gx family number, can't set MSC register. Defaulting to EF{M,R}xG22 values..");
 	}
 
-	ret = target_write_u32(bank->target, EFM32_CMU_REGBASE + EFM32_CMU_REG_CLKEN1_SET, msc_clken);
+	ret = target_write_u32(bank->target, EFM32_CMU_REGBASE_NS + EFM32_CMU_REG_CLKEN1_SET, msc_clken);
 	if (ret != ERROR_OK) {
 		LOG_ERROR("Failed to enable MSC clock");
 		return ret;

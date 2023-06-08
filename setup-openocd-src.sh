@@ -31,6 +31,7 @@ cmd git submodule -q update
 msg copying efm32s2 files to the OpenOCD source tree
 cmd cp ../efm32s2/efm32s2.c src/flash/nor/
 cmd cp ../efm32s2/efm32s2.cfg tcl/target/
+cmd cp ../efm32s2/efm32s2_g23.cfg tcl/target/
 cmd patch -p1 -i ../efm32s2/adjust_openocd.patch
 
 
