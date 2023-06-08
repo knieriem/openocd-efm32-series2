@@ -11,7 +11,9 @@ strip -s bin/openocd-efm32s2
 
 mkdir -p scripts/interface
 cp $src/tcl/interface/cmsis-dap.cfg scripts/interface
+cp $src/tcl/interface/jlink.cfg scripts/interface
 
 mkdir -p scripts/target
 cp $src/tcl/target/efm32s2.cfg scripts/target
+cp $src/tcl/target/efm32s2_g23.cfg scripts/target
 cp $src/tcl/target/swj-dp.tcl scripts/target

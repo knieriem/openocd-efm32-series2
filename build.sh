@@ -4,6 +4,9 @@ cd openocd
 ./configure \
 	--prefix=/opt/openocd-emf32s2-cmsis-dap\
 	--without-capstone\
+	--enable-cmsis-dap\
+	--enable-ftdi\
+	--enable-jlink\
 	--disable-presto\
 	--disable-stlink\
 	--disable-rshim\
