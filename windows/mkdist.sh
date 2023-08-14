@@ -36,5 +36,5 @@ mkdir -p scripts/target
 cp $src/tcl/target/efm32s2.cfg scripts/target
 cp $src/tcl/target/swj-dp.tcl scripts/target
 
-cp ../hidapi/x64/hidapi.dll bin/
-cp ../libusb/COPYING  COPYING.libusb
+cp $p/windows/hidapi-libusb/x64/hidapi.dll bin/
+cp $p/windows/libusb-1.0/COPYING  COPYING.libusb

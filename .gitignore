@@ -3,8 +3,9 @@
 /dist/LICENSES/
 /dist/COPYING
 /openocd/
-/windows/hidapi/
-/windows/libusb/
+/windows/pkgconfig/*.pc
+/windows/hidapi-libusb/
+/windows/libusb-1.0/
 /windows/dist/bin
 /windows/dist/scripts
 /windows/dist/LICENSES/
