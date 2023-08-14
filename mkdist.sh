@@ -6,16 +6,16 @@ if test "x$p" = x; then
 	src=$p/openocd
 	builddir=$src
 else
+	# make $p absolute
+	wd=`pwd`
+	cd $p
+	p=`pwd`
+	cd $wd
+
 	cp -a $p/dist .
 	src=$p/openocd
 	builddir=..
 fi
-
-# make $p absolute
-wd=`pwd`
-cd $p
-p=`pwd`
-cd $wd
 
 cd dist
 
