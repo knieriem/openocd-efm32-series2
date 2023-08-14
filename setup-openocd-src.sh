@@ -34,6 +34,7 @@ cmd cp ../efm32s2/efm32s2.cfg tcl/target/
 cmd cp ../efm32s2/efm32s2_g23.cfg tcl/target/
 cmd patch -p1 -i ../efm32s2/adjust_openocd.patch
 
+cmd ./bootstrap
 
 cat <<EOF
 

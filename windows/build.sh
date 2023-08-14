@@ -1,7 +1,6 @@
 set -e
 cd ../openocd
 toolchain=x86_64-w64-mingw32
-./bootstrap
 ./configure --host=$toolchain \
 	--without-capstone\
 	--disable-presto\
