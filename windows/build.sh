@@ -31,6 +31,8 @@ $srcdir/configure \
 	--host=$toolchain \
 	--without-capstone\
 	--disable-presto\
+	--enable-cmsis-dap\
+	--enable-jlink\
 	--disable-ftdi\
 	--disable-stlink\
 	--disable-rshim\

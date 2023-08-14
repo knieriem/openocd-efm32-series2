@@ -31,6 +31,7 @@ $toolchain-strip -s bin/openocd-efm32s2.exe
 mkdir -p scripts/interface
 cp $src/tcl/interface/cmsis-dap.cfg scripts/interface
 cp $p/dist/scripts/interface/ftdi_ft232h.cfg scripts/interface
+cp $src/tcl/interface/jlink.cfg scripts/interface
 
 mkdir -p scripts/target
 cp $src/tcl/target/efm32s2.cfg scripts/target
