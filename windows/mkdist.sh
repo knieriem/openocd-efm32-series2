@@ -1,13 +1,31 @@
 set -e
+
+p=$1
+if test "x$p" = x; then
+	p=../..
+	src=$p/openocd
+	builddir=$src
+else
+	cp -a $p/windows/dist .
+	src=$p/openocd
+	builddir=..
+fi
+
+# make $p absolute
+wd=`pwd`
+cd $p
+p=`pwd`
+cd $wd
+
 cd dist
-src=../../openocd
+
 toolchain=x86_64-w64-mingw32
 
 cp -a $src/LICENSES .
 cp $src/COPYING .
 
 mkdir -p bin
-cp $src/src/openocd.exe bin/openocd-efm32s2.exe
+cp $builddir/src/openocd.exe bin/openocd-efm32s2.exe
 $toolchain-strip -s bin/openocd-efm32s2.exe
 
 mkdir -p scripts/interface

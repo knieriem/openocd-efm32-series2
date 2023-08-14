@@ -1,6 +1,20 @@
 set -e
-cd openocd
-./configure \
+
+p=$1
+if test "x$p" = x; then
+	p=.
+	cd $p/openocd
+	srcdir=.
+else
+	srcdir=$p/openocd
+	if test `ls -a | wc -l` = 2; then :
+	else
+		echo "build directory not empty"
+		exit 2
+	fi
+fi
+
+$srcdir/configure \
 	--prefix=/opt/openocd-emf32s2-cmsis-dap\
 	--without-capstone\
 	--enable-cmsis-dap\

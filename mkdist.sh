@@ -1,12 +1,29 @@
 set -e
+
+p=$1
+if test "x$p" = x; then
+	p=..
+	src=$p/openocd
+	builddir=$src
+else
+	cp -a $p/dist .
+	src=$p/openocd
+	builddir=..
+fi
+
+# make $p absolute
+wd=`pwd`
+cd $p
+p=`pwd`
+cd $wd
+
 cd dist
-src=../openocd
 
 cp -a $src/LICENSES .
 cp $src/COPYING .
 
 mkdir -p bin
-cp $src/src/openocd bin/openocd-efm32s2
+cp $builddir/src/openocd bin/openocd-efm32s2
 strip -s bin/openocd-efm32s2
 
 mkdir -p scripts/interface
