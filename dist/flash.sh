@@ -9,5 +9,6 @@
 	-c 'flash probe 0' \
 	-c 'flash banks' \
 	-c 'flash list' \
-	-c 'flash write_image erase '$1' $FLASHBASE' \
+	-c 'flash write_image erase '$1' $_FLASHBASE' \
 	-c exit\
+

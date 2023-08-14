@@ -9,5 +9,5 @@
 	-c 'flash probe 0' \
 	-c 'flash banks' \
 	-c 'flash list' \
-	-c 'flash verify_image '$1' $FLASHBASE' \
+	-c 'flash verify_image '$1' $_FLASHBASE' \
 	-c exit\
