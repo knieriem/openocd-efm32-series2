@@ -16,6 +16,7 @@ fi
 
 $srcdir/configure \
 	--prefix=/opt/openocd-emf32s2-cmsis-dap\
+	--disable-shared\
 	--without-capstone\
 	--enable-cmsis-dap\
 	--enable-ftdi\

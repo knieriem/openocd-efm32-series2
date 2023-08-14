@@ -28,6 +28,15 @@ msg initializing sub modules
 cmd git submodule -q init
 cmd git submodule -q update
 
+# If using a builddir different from srcdir, the build process
+# fails when trying to update stamp-vti, and version.texi.
+# Apparently this can't be fixed using the automake option
+# info-in-builddir, so we deactivate 'make' in ./doc completely.
+msg deactivating doc generation
+mv Makefile.am ,,m
+sed '/^include.doc.Makefile.am/s/^/#/' < ,,m > Makefile.am
+rm -f ,,m
+
 msg copying efm32s2 files to the OpenOCD source tree
 cmd cp ../efm32s2/efm32s2.c src/flash/nor/
 cmd cp ../efm32s2/efm32s2.cfg tcl/target/
