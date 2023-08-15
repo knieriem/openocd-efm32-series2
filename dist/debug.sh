@@ -1,8 +1,9 @@
-# Setup interface
-. ./_iface.sh
-# To run on xG23 targets, change below to 'target/efm32s2_g23.cfg'
+#!/bin/sh
+
+. ./_conf.sh
+
 ./bin/openocd-efm32s2 -s scripts -f interface/$iface.cfg \
 	-c 'transport select swd' \
-	-f target/efm32s2.cfg\
+	-f target/$target.cfg\
 	-c init \
 	-c halt \

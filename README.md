@@ -116,7 +116,7 @@ The output should contain lines like:
 Alternatively, instead of CMSIS-DAP the `ftdi` driver may be used with an FTDI device with MPSSE mode.
 Support has been added for FT232H,
 which is part of e.g. [UM232H].
-To use the ftdi interface in [dist/_iface.sh],
+To use the ftdi interface in [dist/_conf.sh],
 comment out the line `iface=ftdi_ft232h`.
 
 The following wiring has been used successfully with an EFM32PG22 and UM232H:
@@ -132,7 +132,7 @@ To get the FTDI approach to run on Windows,
 the default FTDI driver has to be replaced with WinUSB by a tool like [zadig].
 
 [UM232H]: https://ftdichip.com/wp-content/uploads/2020/07/DS_UM232H.pdf#page=10
-[dist/_iface.sh]: dist/_iface.sh
+[dist/_conf.sh]: dist/_conf.sh
 [swd-resistor-hack.cfg]: https://github.com/openocd-org/openocd/tree/master/tcl/interface/ftdi/swd-resistor-hack.cfg 
 [zadig]: https://github.com/pbatard/libwdi/releases
 
