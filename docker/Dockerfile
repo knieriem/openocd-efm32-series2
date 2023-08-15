@@ -23,6 +23,6 @@ RUN apt-get update && apt-get install -y \
 
 COPY . /p/
 
-RUN cd /p && sh setup-openocd-src.sh
-
 RUN cd /p/windows && sh setup-libs.sh
+
+RUN cd /p && sh setup-openocd-src.sh
