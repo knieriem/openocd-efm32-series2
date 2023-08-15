@@ -46,8 +46,14 @@ x7z() {
 	7zr x "$@"
 }
 
+xtarxz() {
+	tar xJf "$@"
+}
 
-# get libusb and hidapi DLLs from github.com/libusb:
+
+##
+## hidapi
+##
 
 dl \
 	./hidapi-libusb \
@@ -55,6 +61,10 @@ dl \
 	https://github.com/libusb/hidapi/releases/download/hidapi-0.10.1/hidapi-win.zip \
 	87b2017a3060f6d032160c5f139a30baae38ab3a867439eb65abcfcc93b2ba06 \
 
+
+##
+## libusb-1.0
+##
 
 dl \
 	./libusb-1.0 \
@@ -65,3 +75,31 @@ dl \
 
 cd libusb-1.0
 wget https://raw.githubusercontent.com/libusb/libusb/master/COPYING
+cd ..
+
+
+##
+## libjaylink
+##
+
+dl \
+	./libjaylink \
+	tarxz \
+	https://deb.debian.org/debian/pool/main/libj/libjaylink/libjaylink_0.2.0.orig.tar.xz \
+	9d3739732e25c0e5b72f756cf966d5ab20ba2ee88660226a45f32aa2738c515d \
+
+cd ./libjaylink/libjaylink-0.2.0/
+
+toolchain=x86_64-w64-mingw32
+
+sh ./autogen.sh
+PKG_CONFIG_PATH=$p/windows/pkgconfig \
+./configure \
+	--prefix=`pwd`/..\
+	--host=$toolchain \
+
+make
+make install
+cd ..
+cd ..
+
