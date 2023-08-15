@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
 	libusb-1.0-0-dev \
 	libhidapi-dev \
 	libftdi-dev \
+	libjaylink-dev \
 	p7zip \
 	\
 	gcc-mingw-w64-x86-64 \

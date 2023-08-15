@@ -1,8 +1,8 @@
 diff --git a/configure.ac b/configure.ac
-index 15d7229a4..8b0a87497 100644
+index ecf8384bf..545d0cd03 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -616,6 +616,8 @@ AS_IF([test "x$enable_capstone" != xno], [
+@@ -632,6 +632,8 @@ AS_IF([test "x$enable_capstone" != xno], [
  		fi
  		enable_capstone=no
  	])
@@ -10,12 +10,12 @@ index 15d7229a4..8b0a87497 100644
 +	AC_DEFINE([HAVE_CAPSTONE], [0], [0 if you don't have Capstone disassembly framework.])
  ])
  
- for hidapi_lib in hidapi hidapi-hidraw hidapi-libusb; do
+ AS_IF([test "x$enable_capstone" == xno], [
 diff --git a/src/flash/nor/Makefile.am b/src/flash/nor/Makefile.am
-index a5ef42210..963edbdcf 100644
+index 534a7a804..159244502 100644
 --- a/src/flash/nor/Makefile.am
 +++ b/src/flash/nor/Makefile.am
-@@ -25,6 +25,7 @@ NOR_DRIVERS = \
+@@ -27,6 +27,7 @@ NOR_DRIVERS = \
  	%D%/cfi.c \
  	%D%/dsp5680xx_flash.c \
  	%D%/efm32.c \
@@ -23,11 +23,11 @@ index a5ef42210..963edbdcf 100644
  	%D%/em357.c \
  	%D%/esirisc_flash.c \
  	%D%/faux.c \
-diff --git a/src/flash/nor/drivers.c b/src/flash/nor/drivers.c
-index 3e35c0954..df46e9bb9 100644
---- a/src/flash/nor/drivers.c
-+++ b/src/flash/nor/drivers.c
-@@ -38,6 +38,7 @@ extern const struct flash_driver cc26xx_flash;
+diff --git a/src/flash/nor/driver.h b/src/flash/nor/driver.h
+index a63b72c8f..b2af2c6f0 100644
+--- a/src/flash/nor/driver.h
++++ b/src/flash/nor/driver.h
+@@ -255,6 +255,7 @@ extern const struct flash_driver cc3220sf_flash;
  extern const struct flash_driver cfi_flash;
  extern const struct flash_driver dsp5680xx_flash;
  extern const struct flash_driver efm32_flash;
@@ -35,7 +35,11 @@ index 3e35c0954..df46e9bb9 100644
  extern const struct flash_driver em357_flash;
  extern const struct flash_driver esirisc_flash;
  extern const struct flash_driver faux_flash;
-@@ -113,6 +114,7 @@ static const struct flash_driver * const flash_drivers[] = {
+diff --git a/src/flash/nor/drivers.c b/src/flash/nor/drivers.c
+index 3157bd329..11fa01c4e 100644
+--- a/src/flash/nor/drivers.c
++++ b/src/flash/nor/drivers.c
+@@ -32,6 +32,7 @@ static const struct flash_driver * const flash_drivers[] = {
  	&cfi_flash,
  	&dsp5680xx_flash,
  	&efm32_flash,

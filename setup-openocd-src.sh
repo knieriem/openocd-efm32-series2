@@ -1,6 +1,6 @@
 set -e
 
-openocd_rev=7c6d379
+openocd_rev=2e60e2e
 
 msg () {
 	echo

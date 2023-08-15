@@ -45,7 +45,7 @@ Clone OpenOCD's official Github mirror repository:
 
 Checkout a revision compatible to this EFM32 series 2 extension:
 
-	git checkout 7c6d379
+	git checkout 2e60e2e
 
 ... which sets the OpenOCD source directory to where this author last tested building. Bumping further might work, but YMMV.
 

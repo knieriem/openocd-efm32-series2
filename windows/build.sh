@@ -62,6 +62,8 @@ $srcdir/configure \
 	--disable-ep93xx\
 	--disable-imx_gpio\
 	--disable-bcm2835gpio\
+	\
+	--disable-ssl\
 
 make clean
 make
